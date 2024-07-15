@@ -4,6 +4,7 @@ function App() {
   return (
     <div className="App">
       <TableTop />
+      {/* <TableTop matrix={7} /> */}
     </div>
   );
 }
