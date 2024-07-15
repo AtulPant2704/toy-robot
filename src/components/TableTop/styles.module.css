@@ -31,3 +31,14 @@
 .robotNorth {
   transform: rotate(180deg);
 }
+
+.actionBtns {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.currentPosition {
+  margin-top: 1rem;
+  color: green;
+}

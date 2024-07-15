@@ -26,61 +26,67 @@ const PlacementForm = ({
 
   return (
     <div className={styles.placementContainer}>
-      Placement
-      <form onSubmit={placementHandler}>
-        <label htmlFor="x">X Coordinate:</label>
-        <select
-          name="x-coordinate"
-          id="x"
-          value={placementPosition.x}
-          onChange={(e) =>
-            placementPositionHandler({
-              key: "x",
-              value: Number(e.target.value),
-            })
-          }
-        >
-          {optionsArr.map((item, index) => (
-            <option key={index} value={index}>
-              {index}
-            </option>
-          ))}
-        </select>
-        <label htmlFor="y">Y Coordinate:</label>
-        <select
-          name="y-coordinate"
-          id="y"
-          value={placementPosition.y}
-          onChange={(e) =>
-            placementPositionHandler({
-              key: "y",
-              value: Number(e.target.value),
-            })
-          }
-        >
-          {optionsArr.map((item, index) => (
-            <option key={index} value={index}>
-              {index}
-            </option>
-          ))}
-        </select>
-        <label htmlFor="direction">Direction:</label>
-        <select
-          name="direction"
-          id="direction"
-          value={placementPosition.direction}
-          onChange={(e) =>
-            placementPositionHandler({
-              key: "direction",
-              value: e.target.value as DIRECTION_TYPES,
-            })
-          }
-        >
-          <option value="EAST">EAST</option>
-          <option value="NORTH">NORTH</option>
-          <option value="SOUTH">SOUTH</option>
-          <option value="WEST">WEST</option>
-        </select>
+      <b>Placement:- </b>
+      <form onSubmit={placementHandler} className={styles.placementForm}>
+        <div>
+          <label htmlFor="x">X Coordinate:</label>
+          <select
+            name="x-coordinate"
+            id="x"
+            value={placementPosition.x}
+            onChange={(e) =>
+              placementPositionHandler({
+                key: "x",
+                value: Number(e.target.value),
+              })
+            }
+          >
+            {optionsArr.map((_item, index) => (
+              <option key={index} value={index}>
+                {index}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <label htmlFor="y">Y Coordinate:</label>
+          <select
+            name="y-coordinate"
+            id="y"
+            value={placementPosition.y}
+            onChange={(e) =>
+              placementPositionHandler({
+                key: "y",
+                value: Number(e.target.value),
+              })
+            }
+          >
+            {optionsArr.map((_item, index) => (
+              <option key={index} value={index}>
+                {index}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <label htmlFor="direction">Direction:</label>
+          <select
+            name="direction"
+            id="direction"
+            value={placementPosition.direction}
+            onChange={(e) =>
+              placementPositionHandler({
+                key: "direction",
+                value: e.target.value as DIRECTION_TYPES,
+              })
+            }
+          >
+            <option value="EAST">EAST</option>
+            <option value="NORTH">NORTH</option>
+            <option value="SOUTH">SOUTH</option>
+            <option value="WEST">WEST</option>
+          </select>
+        </div>
         <button type="submit">Place</button>
       </form>
     </div>

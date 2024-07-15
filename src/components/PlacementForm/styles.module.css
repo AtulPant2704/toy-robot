@@ -1,4 +1,8 @@
 .placementContainer {
+  margin-top: 1rem;
+}
+
+.placementForm {
   display: flex;
   gap: 1rem;
 }

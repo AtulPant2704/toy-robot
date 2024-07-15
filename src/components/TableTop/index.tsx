@@ -1,4 +1,4 @@
-import { FormEvent, useCallback, useMemo, useState } from "react";
+import { FormEvent, useCallback, useEffect, useMemo, useState } from "react";
 import PlacementForm from "../PlacementForm";
 import {
   DIRECTION_TYPES,
@@ -19,6 +19,7 @@ const TableTop = ({ matrix = 5 }) => {
       direction: "EAST",
     });
   const [showPosition, setShowPosition] = useState(false);
+  const [placementCompleted, setPlacementCompleted] = useState(false);
 
   const getSquares = useMemo(() => {
     const squaresArr = new Array(matrix);
@@ -62,6 +63,12 @@ const TableTop = ({ matrix = 5 }) => {
     event.preventDefault();
     setPosition([placementPosition.x, placementPosition.y]);
     setDirection(placementPosition.direction);
+    setPlacementPosition({
+      x: 0,
+      y: 0,
+      direction: "EAST",
+    });
+    setPlacementCompleted(true);
   };
 
   const moveHandler = () => {
@@ -125,6 +132,10 @@ const TableTop = ({ matrix = 5 }) => {
     return matrix - (index + 1);
   };
 
+  useEffect(() => {
+    setShowPosition(false);
+  }, [position, direction]);
+
   return (
     <>
       <div
@@ -132,7 +143,7 @@ const TableTop = ({ matrix = 5 }) => {
         style={{ gridTemplateColumns: `repeat(${matrix}, 60px)` }}
       >
         {getSquares.map((item, yIndex: number) =>
-          item.map((element: number, xIndex: number) => (
+          item.map((_element: number, xIndex: number) => (
             <div key={yIndex + xIndex} className={styles.square}>
               <div className={styles.boxIndex}>
                 {xIndex}, {getColumnIndex(yIndex)}
@@ -153,14 +164,25 @@ const TableTop = ({ matrix = 5 }) => {
       />
 
       <div className={styles.actionBtns}>
-        <button onClick={moveHandler}>MOVE</button>
-        <button onClick={leftHandler}>LEFT</button>
-        <button onClick={rightHandler}>RIGHT</button>
-        <button onClick={() => setShowPosition(true)}>REPORT</button>
+        <button disabled={!placementCompleted} onClick={moveHandler}>
+          MOVE
+        </button>
+        <button disabled={!placementCompleted} onClick={leftHandler}>
+          LEFT
+        </button>
+        <button disabled={!placementCompleted} onClick={rightHandler}>
+          RIGHT
+        </button>
+        <button
+          disabled={!placementCompleted}
+          onClick={() => setShowPosition(true)}
+        >
+          REPORT
+        </button>
       </div>
 
       {showPosition && (
-        <div>
+        <div className={styles.currentPosition}>
           Robot current position is: {position[0]}, {position[1]}, {direction}
         </div>
       )}
