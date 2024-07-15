@@ -38,3 +38,4 @@ Toy Robot Simulator is a game in which user can create a dynamic matrix and move
 2. Run `npm install` in the terminal to install dependencies
 3. Run `npm run start` to start the server on your local and paste the url given in terminal on your browser to view changes
 4. To change the matrix count add `matrix` prop to the `TableTop` component like `<TableTop matrix={7} />`
+5. Some of the test data is provided in `testData.md` file. However all the test cases can be tested on UI.
