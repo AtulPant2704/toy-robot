@@ -1,0 +1,33 @@
+.tableTop {
+  display: grid;
+}
+
+.square {
+  height: 60px;
+  width: 60px;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.boxIndex {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 13px;
+  color: gray;
+}
+
+.robotEast {
+  transform: rotate(270deg);
+}
+
+.robotWest {
+  transform: rotate(90deg);
+}
+
+.robotNorth {
+  transform: rotate(180deg);
+}
